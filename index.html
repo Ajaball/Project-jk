@@ -4,14 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مجلة أضواء محاسبية - Financial Pulse</title>
-    <!-- مكتبة Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- خطوط جوجل (Cairo) -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
-    <!-- مكتبة الأيقونات FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- إعدادات الألوان المخصصة لتطابق الصورة -->
     <script>
         tailwind.config = {
             theme: {
@@ -20,30 +15,29 @@
                         cairo: ['Cairo', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#1e3888', /* الأزرق الكحلي */
-                        secondary: '#e68a00', /* البرتقالي */
-                        lightbg: '#f8f9fa',
+                        primary: '#1e3a8a', // Deep Blue
+                        secondary: '#d97706', // Amber/Gold
+                        accent: '#f3f4f6', // Light Gray
                     }
                 }
             }
         }
     </script>
-
     <style>
         body { 
             font-family: 'Cairo', sans-serif; 
-            background-color: #d1d5db; /* لون خلفية المتصفح */
+            background-color: #cbd5e1; /* لون خلفية غامق ليبرز الصفحات */
             margin: 0;
             padding: 20px 0;
         }
         
-        /* إعدادات صفحة A4 القياسية */
+        /* إعدادات صفحة A4 */
         .a4-page {
             width: 210mm;
             height: 297mm;
             margin: 0 auto 30px auto;
             background-color: white;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -52,13 +46,11 @@
             page-break-after: always;
         }
 
-        /* نقش النقاط الخفيف للغلاف */
-        .dot-pattern {
-            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-            background-size: 15px 15px;
+        .bg-pattern { 
+            background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%231e3a8a" fill-opacity="0.05" fill-rule="evenodd"%3E%3Ccircle cx="3" cy="3" r="3"/%3E%3Ccircle cx="13" cy="13" r="3"/%3E%3C/g%3E%3C/svg%3E'); 
         }
 
-        /* إعدادات الطباعة (لإخفاء الظلال وضبط المقاسات) */
+        /* إعدادات الطباعة */
         @page {
             size: A4;
             margin: 0;
@@ -78,227 +70,220 @@
             }
         }
 
-        /* استجابة للشاشات الصغيرة */
+        /* للشاشات الصغيرة */
         @media screen and (max-width: 800px) {
             .a4-page {
                 width: 100%;
                 height: auto;
                 min-height: 297mm;
+                margin-bottom: 20px;
             }
         }
     </style>
 </head>
 <body class="text-gray-800 antialiased">
 
-    <!-- زر الطباعة -->
-    <div class="no-print max-w-sm mx-auto mb-8 text-center bg-white p-5 rounded-2xl shadow-lg border-t-4 border-primary">
-        <p class="font-bold mb-3 text-lg">اضغطي هنا لحفظ المجلة كملف PDF</p>
-        <button onclick="window.print()" class="bg-primary hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-full transition w-full shadow-md flex justify-center items-center gap-2">
-            <i class="fa-solid fa-print"></i> طباعة / حفظ كـ PDF
+    <!-- زر الطباعة (لا يظهر عند الطباعة) -->
+    <div class="no-print max-w-sm mx-auto mb-8 text-center bg-white p-4 rounded-xl shadow-md border-t-4 border-primary">
+        <p class="font-bold mb-3">اضغطي هنا لحفظ المجلة كملف PDF</p>
+        <button onclick="window.print()" class="bg-primary hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-full transition w-full shadow-md">
+            <i class="fa-solid fa-print ml-2"></i> طباعة / حفظ كـ PDF
         </button>
     </div>
 
-    <!-- ================= الصفحة الأولى: الغلاف (مطابق للصورة 100%) ================= -->
-    <div class="a4-page">
-        <!-- القسم العلوي الأبيض مع النقاط -->
-        <div class="h-[72%] flex flex-col p-12 dot-pattern relative">
-            
-            <!-- شارة العدد -->
-            <div class="absolute top-10 right-10 bg-secondary text-white font-bold px-4 py-1 text-sm rounded-sm">
-                العدد الأول | 2026
+    <!-- ================= الصفحة الأولى: الغلاف ================= -->
+    <div class="a4-page border-t-8 border-primary">
+        <!-- الجزء العلوي من الغلاف -->
+        <div class="h-2/3 flex flex-col p-12 bg-accent bg-pattern relative">
+            <div class="absolute top-8 right-8 px-4 py-2 bg-secondary text-white font-bold rounded-bl-xl shadow-lg">
+                العدد الأول | 2024
             </div>
             
-            <!-- منطقة العنوان والباركود -->
-            <div class="mt-20 mx-auto w-full max-w-md relative" dir="rtl">
-                <p class="text-secondary font-bold tracking-[0.15em] text-lg mb-1 text-right uppercase">FINANCIAL PULSE</p>
-                <h1 class="text-primary text-[5.5rem] font-black leading-none text-right mb-2 tracking-tight">أضواء<br>محاسبية</h1>
+            <div class="mt-8">
+                <h2 class="text-2xl text-secondary font-bold mb-2 tracking-wider uppercase">Financial Pulse</h2>
+                <h1 class="text-7xl font-black text-primary mb-10 leading-tight drop-shadow-sm">أضواء<br>محاسبية</h1>
                 
-                <!-- الباركود مدمج تحت الكلمة كما في الصورة -->
-                <div class="absolute left-[-10px] bottom-[-30px] z-10">
-                    <div class="relative inline-block">
-                        <span class="absolute -top-3 -left-3 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full border-2 border-white shadow-sm z-20">
-                            SCAN ME
-                        </span>
-                        <img src="qr.jpg" alt="QR Code" class="w-28 h-28 object-cover rounded-xl border-2 border-secondary shadow-lg p-1 bg-white" />
+                <div class="space-y-5 w-3/4">
+                    <div class="bg-white p-4 border-r-4 border-secondary shadow-sm rounded-l-lg">
+                        <h3 class="font-bold text-xl text-primary"><i class="fa-solid fa-bolt text-secondary ml-3"></i>أسرار علاوة الإصدار</h3>
+                    </div>
+                    <div class="bg-white p-4 border-r-4 border-secondary shadow-sm rounded-l-lg">
+                        <h3 class="font-bold text-xl text-primary"><i class="fa-solid fa-scale-balanced text-secondary ml-3"></i>الفرق بين السهم العادي والممتاز</h3>
+                    </div>
+                    <div class="bg-white p-4 border-r-4 border-secondary shadow-sm rounded-l-lg">
+                        <h3 class="font-bold text-xl text-primary"><i class="fa-solid fa-magnifying-glass-chart text-secondary ml-3"></i>كيف تكتشف الأخطاء في القيود؟</h3>
                     </div>
                 </div>
             </div>
 
-            <!-- القائمة / المحتويات -->
-            <div class="mt-24 space-y-4 w-[80%] mx-auto z-10">
-                
-                <div class="bg-white p-4 shadow-sm border-r-8 border-secondary flex items-center gap-4 relative">
-                    <span class="absolute -top-3 -left-2 bg-white border border-gray-200 text-gray-500 text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1"><i class="fa-solid fa-fire text-secondary"></i> جديد</span>
-                    <i class="fa-solid fa-bolt text-secondary text-2xl w-8 text-center"></i>
-                    <h3 class="font-bold text-xl text-primary">أسرار علاوة الإصدار</h3>
-                </div>
-
-                <div class="bg-white p-4 shadow-sm border-r-8 border-secondary flex items-center gap-4">
-                    <i class="fa-solid fa-scale-balanced text-secondary text-xl w-8 text-center"></i>
-                    <h3 class="font-bold text-xl text-primary">الفرق بين السهم العادي والممتاز</h3>
-                </div>
-
-                <div class="bg-white p-4 shadow-sm border-r-8 border-secondary flex items-center gap-4">
-                    <i class="fa-solid fa-magnifying-glass-chart text-secondary text-xl w-8 text-center"></i>
-                    <h3 class="font-bold text-xl text-primary">كيف تكتشف الأخطاء في القيود؟</h3>
-                </div>
-
-            </div>
-
-            <!-- الأسماء -->
-            <div class="mt-auto pt-6 text-center border-t border-gray-200 w-[90%] mx-auto">
-                <p class="text-xs font-bold text-gray-500 mb-1">إعداد وتصميم الطالبات المحاسبات المتميزات:</p>
+            <div class="mt-auto pt-6 border-t-2 border-gray-300">
+                <p class="text-sm font-bold text-gray-500 mb-2">إعداد وتصميم الطالبات المحاسبات:</p>
                 <p class="text-xl font-black text-primary">جنى الشهري • شهد خلف • هاجر محمد • أمجاد عايض</p>
             </div>
         </div>
 
-        <!-- القسم السفلي الأزرق -->
-        <div class="h-[28%] bg-primary flex flex-col items-center justify-center p-8 text-center relative overflow-hidden">
-            <!-- مؤثرات خلفية خفيفة -->
-            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-800 rounded-full mix-blend-multiply opacity-50 blur-3xl"></div>
-            
-            <div class="relative z-10 flex flex-col items-center">
-                <!-- أيقونة الرسم البياني -->
-                <svg class="w-16 h-16 mb-4" viewBox="0 0 24 24" fill="none" stroke="#e68a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                </svg>
-                
-                <h2 class="text-5xl font-black text-white mb-2 tracking-wide">رأس مال الأسهم</h2>
-                <p class="text-blue-200 text-lg font-semibold">دليلك الشامل لفهم حقوق الملكية</p>
-                <p class="text-blue-300 text-xs mt-2 font-bold">مشروع مقرر محاسبة متوسطة 2</p>
+        <!-- الجزء السفلي من الغلاف -->
+        <div class="h-1/3 bg-primary relative flex items-center justify-center p-8 overflow-hidden">
+            <div class="relative z-10 text-center">
+                <i class="fa-solid fa-chart-line text-7xl text-secondary opacity-90 mb-4 drop-shadow-lg"></i>
+                <h2 class="text-4xl font-bold text-white mb-2">رأس مال الأسهم</h2>
+                <p class="text-blue-200 text-lg">دليلك الشامل لفهم حقوق الملكية</p>
+                <p class="text-blue-300 text-sm mt-2 font-bold">مشروع مقرر محاسبة متوسطة 2</p>
             </div>
-            
-            <!-- خط برتقالي في الأعلى والأسفل كديكور -->
-            <div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+            <!-- دوائر تزيينية -->
+            <div class="absolute top-5 right-10 w-32 h-32 bg-blue-700 rounded-full mix-blend-multiply opacity-70 blur-xl"></div>
+            <div class="absolute bottom-5 left-10 w-40 h-40 bg-secondary rounded-full mix-blend-multiply opacity-50 blur-xl"></div>
         </div>
     </div>
 
     <!-- ================= الصفحة الثانية: الحوار والمقال ================= -->
     <div class="a4-page p-12">
         <div class="mb-4">
-            <span class="bg-white border-2 border-secondary text-secondary px-4 py-1 rounded-full text-xs font-bold mb-2 inline-block shadow-sm">صفحة 2</span>
+            <span class="bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-xs font-bold mb-2 inline-block">صفحة 2</span>
         </div>
 
+        <!-- حوار تخيلي -->
         <div class="mb-10 flex-grow">
-            <h2 class="text-3xl font-black text-primary mb-8 border-b-2 border-secondary pb-4 flex items-center">
-                <i class="fa-solid fa-comments text-secondary ml-3 text-3xl"></i>
-                حوار حصري فني: مواجهة بين الأسهم!
+            <h2 class="text-2xl font-black text-primary mb-6 border-b-2 border-gray-100 pb-3 flex items-center">
+                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center ml-3 text-lg">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                حوار حصري: مواجهة بين الأسهم!
             </h2>
             
-            <div class="flex flex-col space-y-6">
+            <div class="flex flex-col space-y-4">
                 <!-- السهم العادي -->
-                <div class="flex items-start bg-blue-50 p-5 rounded-2xl rounded-tr-none w-5/6 self-start border border-blue-100 shadow-sm relative">
-                    <span class="absolute -bottom-3 right-5 bg-white border border-gray-200 text-gray-600 text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1"><i class="fa-solid fa-fire text-secondary"></i> الأكثر شيوعاً</span>
-                    <div class="bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ml-4 shadow-md text-xl">
+                <div class="flex items-start bg-blue-50 p-3 rounded-xl rounded-tr-none w-5/6 self-start border border-blue-100">
+                    <div class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ml-3 shadow">
                         <i class="fa-solid fa-user-tie"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-primary mb-2 text-base">السهم العادي</h4>
-                        <p class="text-gray-700 text-sm leading-loose">أنا السهم العادي، أحب المغامرة والمخاطرة. ميزتي الأقوى أن لي الكلمة العليا؛ فأنا أمتلك حق التصويت في الجمعية العمومية واختيار مجلس الإدارة. وأحصل على حصتي من الأرباح المتبقية.</p>
+                        <h4 class="font-bold text-primary mb-1 text-sm">السهم العادي</h4>
+                        <p class="text-gray-700 text-sm leading-relaxed">أنا السهم العادي، أحب المغامرة والمخاطرة. ميزتي الأقوى أن لي الكلمة العليا؛ فأنا أمتلك حق التصويت في الجمعية العمومية واختيار أو عزل مجلس الإدارة.</p>
                     </div>
                 </div>
 
                 <!-- السهم الممتاز -->
-                <div class="flex items-start bg-orange-50 p-5 rounded-2xl rounded-tl-none w-5/6 self-end border border-orange-200 shadow-sm flex-row-reverse text-right relative">
-                    <div class="bg-secondary text-white w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 mr-4 shadow-md text-xl">
+                <div class="flex items-start bg-orange-50 p-3 rounded-xl rounded-tl-none w-5/6 self-end border border-orange-100 flex-row-reverse">
+                    <div class="bg-secondary text-white w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mr-3 shadow">
                         <i class="fa-solid fa-crown"></i>
                     </div>
+                    <div class="text-left" dir="rtl">
+                        <h4 class="font-bold text-secondary mb-1 text-sm">السهم الممتاز</h4>
+                        <p class="text-gray-700 text-sm leading-relaxed">لكني أحب الاستقرار والأمان. أحصل على أرباحي أولاً بنسبة ثابتة، وفي حال التصفية، يتم سداد حقوقي بالكامل قبل أن تأخذ أنت ريالاً واحداً!</p>
+                    </div>
+                </div>
+
+                <!-- السهم العادي -->
+                <div class="flex items-start bg-blue-50 p-3 rounded-xl rounded-tr-none w-5/6 self-start border border-blue-100">
+                    <div class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ml-3 shadow">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
                     <div>
-                        <h4 class="font-bold text-secondary mb-2 text-base">السهم الممتاز</h4>
-                        <p class="text-gray-700 text-sm leading-loose">لكني أحب الاستقرار والأمان. أحصل على أرباحي أولاً بنسبة ثابتة، وفي حال التصفية، سداد حقوقي يتم قبل أن تأخذ أنت ريالاً واحداً! مما يوفر لي الأمان كشريك مميز.</p>
+                        <h4 class="font-bold text-primary mb-1 text-sm">السهم العادي</h4>
+                        <p class="text-gray-700 text-sm leading-relaxed">لكن تذكر.. إذا حققت الشركة أرباحاً هائلة، سأحصل أنا على النصيب الأكبر، بينما تظل أنت مقيداً بنسبتك الثابتة.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="bg-lightbg p-8 rounded-2xl border border-gray-200 mt-auto shadow-sm">
-            <h2 class="text-2xl font-black text-green-700 mb-4 flex items-center">
-                <i class="fa-solid fa-book-open text-green-600 ml-3 text-2xl"></i>
-                عين على الواقع: نظام الشركات السعودي المطور
-            </h2>
-            <div class="flex gap-6 items-center">
-                <div class="w-32 h-32 flex-shrink-0 bg-white p-2 rounded-xl shadow-sm border border-gray-100 flex items-center justify-center">
-                   <img src="https://via.placeholder.com/150x150/1e3a8a/ffffff?text=KSA+Vision" alt="رؤية المملكة" class="w-full h-full object-cover rounded-lg">
+        <!-- مقال النظام -->
+        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 mt-auto">
+            <h2 class="text-2xl font-black text-green-700 mb-4 border-b-2 border-green-200 pb-3 flex items-center">
+                <div class="bg-green-100 text-green-700 w-10 h-10 rounded-full flex items-center justify-center ml-3 text-lg">
+                    <i class="fa-solid fa-book-open"></i>
                 </div>
+                عين على الواقع: نظام الشركات السعودي
+            </h2>
+            <div class="flex gap-4">
+                <img src="https://via.placeholder.com/150x150/1e3a8a/ffffff?text=KSA+Vision" alt="نظام الشركات" class="w-32 h-32 object-cover rounded-lg shadow-sm mix-blend-multiply opacity-90">
                 <p class="text-gray-700 text-sm leading-loose text-justify">
                     جاء نظام الشركات السعودي الجديد بمرونة عالية تواكب رؤية 2030، حيث منح شركات المساهمة حرية أكبر في هيكلة حقوق الملكية. 
-                    من أبرز التحديثات: السماح بإصدار أسهم عادية، ممتازة، وقابلة للاسترداد بمرونة، وإلغاء القيمة الإسمية الإلزامية الثابتة السابقة لبعض الأسهم. هذا النظام يهدف لجذب المستثمرين ويعزز قوة السوق المالي!
+                    من أبرز التحديثات: السماح بإصدار أسهم عادية، ممتازة، وقابلة للاسترداد بمرونة، وإلغاء القيمة الإسمية الإلزامية الثابتة السابقة لبعض الأسهم. هذا النظام يهدف لجذب المستثمرين، مما يعزز من قوة السوق المالي ويجعل فهمنا كطالبات محاسبة لهذه القيود بالغ الأهمية لمواكبة سوق العمل!
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- ================= الصفحة الثالثة: الانفوجرافيك ================= -->
+    <!-- ================= الصفحة الثالثة: الانفوجرافيك والحالة ================= -->
     <div class="a4-page p-12">
         <div class="mb-4">
-            <span class="bg-white border-2 border-secondary text-secondary px-4 py-1 rounded-full text-xs font-bold mb-2 inline-block shadow-sm">صفحة 3</span>
+            <span class="bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-xs font-bold mb-2 inline-block">صفحة 3</span>
         </div>
 
-        <div class="bg-primary text-white rounded-3xl p-8 mb-8 relative overflow-hidden shadow-lg border-b-8 border-secondary">
-            <div class="absolute inset-0 dot-pattern opacity-10"></div>
+        <!-- إنفوجرافيك -->
+        <div class="bg-primary text-white rounded-2xl p-6 mb-8 relative overflow-hidden shadow-lg">
+            <div class="absolute inset-0 bg-pattern opacity-10"></div>
             <div class="relative z-10">
-                <h2 class="text-2xl font-black mb-8 text-center text-white border-b border-blue-700 pb-4">
-                    <i class="fa-solid fa-chart-pie ml-2 text-secondary"></i> إنفوجرافيك: إصدار الأسهم بعلاوة
+                <h2 class="text-xl font-black mb-6 text-center text-secondary border-b border-blue-700 pb-2 inline-block mx-auto w-full">
+                    <i class="fa-solid fa-chart-pie ml-2"></i>إنفوجرافيك: إصدار الأسهم بعلاوة
                 </h2>
                 
-                <div class="flex items-center justify-center gap-4 my-8">
-                    <div class="bg-white text-primary p-4 rounded-2xl text-center w-1/3 shadow-md">
-                        <h3 class="font-bold text-sm mb-2 text-gray-500">القيمة الإسمية</h3>
-                        <div class="text-3xl font-black text-primary">10 <span class="text-sm font-bold">ريال</span></div>
+                <div class="flex items-center justify-center gap-4 my-6">
+                    <!-- القيمة الاسمية -->
+                    <div class="bg-white text-primary p-3 rounded-xl text-center w-1/3 shadow-md">
+                        <h3 class="font-bold text-sm mb-1">القيمة الإسمية</h3>
+                        <div class="text-2xl font-black text-primary">10 <span class="text-xs">ريال</span></div>
                     </div>
 
-                    <div class="text-4xl font-black text-secondary">+</div>
+                    <div class="text-2xl font-black text-secondary">+</div>
 
-                    <div class="bg-white text-primary p-4 rounded-2xl text-center w-1/3 shadow-md border-2 border-secondary">
-                        <h3 class="font-bold text-sm mb-2 text-secondary">علاوة الإصدار</h3>
-                        <div class="text-3xl font-black text-secondary">5 <span class="text-sm font-bold">ريال</span></div>
+                    <!-- علاوة الإصدار -->
+                    <div class="bg-white text-primary p-3 rounded-xl text-center w-1/3 shadow-md border-2 border-secondary">
+                        <h3 class="font-bold text-sm mb-1">علاوة الإصدار</h3>
+                        <div class="text-2xl font-black text-secondary">5 <span class="text-xs">ريال</span></div>
                     </div>
 
-                    <div class="text-4xl font-black text-white">=</div>
+                    <div class="text-2xl font-black text-white">=</div>
 
-                    <div class="bg-gradient-to-br from-secondary to-orange-600 text-white p-4 rounded-2xl text-center w-1/3 shadow-md">
-                        <h3 class="font-bold text-sm mb-2 opacity-90">سعر الإصدار</h3>
-                        <div class="text-3xl font-black">15 <span class="text-sm font-bold">ريال</span></div>
+                    <!-- سعر الإصدار -->
+                    <div class="bg-gradient-to-br from-secondary to-orange-600 text-white p-3 rounded-xl text-center w-1/3 shadow-md">
+                        <h3 class="font-bold text-sm mb-1">سعر الإصدار</h3>
+                        <div class="text-2xl font-black">15 <span class="text-xs">ريال</span></div>
                     </div>
                 </div>
 
-                <div class="bg-blue-900 bg-opacity-50 p-5 rounded-2xl border border-blue-500 mx-auto w-[80%]">
-                    <h3 class="font-bold text-sm mb-3 text-secondary text-center">القيد المحاسبي للإثبات:</h3>
-                    <div class="bg-white text-primary p-4 rounded-xl text-base font-bold leading-loose text-right shadow-inner">
-                        <div class="flex justify-between border-b pb-2 mb-2 border-gray-200">
-                            <span><span class="text-secondary text-lg mr-1">15</span> من حـ / النقدية</span>
+                <!-- القيد المحاسبي -->
+                <div class="bg-blue-900 p-4 rounded-xl border border-blue-700 mx-auto text-center">
+                    <h3 class="font-bold text-sm mb-2 text-secondary">القيد المحاسبي للإثبات:</h3>
+                    <div class="bg-white text-gray-800 p-3 rounded text-sm font-bold leading-loose text-right shadow-inner">
+                        <div class="flex justify-between border-b pb-1 mb-1">
+                            <span><span class="text-primary mr-1">15</span> من حـ / النقدية</span>
                         </div>
-                        <div class="pr-4 pb-2 text-sm text-gray-500">إلى مذكورين:</div>
+                        <div class="pr-4 pb-1 text-xs text-gray-500">إلى مذكورين:</div>
                         <div class="flex justify-between pr-8 pb-1">
-                            <span><span class="text-primary text-lg mr-1">10</span> حـ / رأس مال الأسهم العادية</span>
+                            <span><span class="text-primary mr-1">10</span> حـ / رأس مال الأسهم العادية</span>
                         </div>
                         <div class="flex justify-between pr-8">
-                            <span><span class="text-secondary text-lg mr-1">5</span> حـ / الاحتياطي النظامي (علاوة إصدار)</span>
+                            <span><span class="text-secondary mr-1">5</span> حـ / الاحتياطي النظامي (علاوة إصدار)</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="flex flex-col bg-white rounded-2xl shadow-md p-8 flex-grow mt-auto border-2 border-red-100 relative">
-            <span class="absolute top-0 right-8 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-b-md shadow-sm">دراسة حالة خطيرة 🚫</span>
-            
-            <div class="flex items-center mb-6 mt-2">
-                <i class="fa-solid fa-user-secret text-red-600 text-3xl ml-4"></i>
+        <!-- محقق المحاسبة -->
+        <div class="flex flex-col border-t-4 border-red-500 bg-white rounded-b-2xl shadow-sm p-6 flex-grow mt-auto border border-gray-200">
+            <div class="flex items-center mb-4">
+                <div class="bg-red-100 text-red-600 w-12 h-12 rounded-full flex items-center justify-center ml-3 text-xl">
+                    <i class="fa-solid fa-user-secret"></i>
+                </div>
                 <h2 class="text-2xl font-black text-gray-800">ركن محقق المحاسبة</h2>
             </div>
             
-            <p class="text-gray-700 text-base mb-4 leading-relaxed">أصدرت الشركة 100,000 سهم، القيمة الإسمية 10 ريال، وبيع بسعر 12 ريال. قام المحاسب بتسجيل القيد:</p>
-            
-            <div class="bg-red-50 text-red-800 p-3 rounded-xl text-center text-sm font-bold mb-5 border border-red-200 line-through decoration-red-500 decoration-2">
-                1,200,000 من حـ / النقدية <br>
-                1,200,000 إلى حـ / رأس مال الأسهم العادية
+            <div class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200">
+                <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block">دراسة حالة </span>
+                <h3 class="font-bold text-lg mb-2 text-primary">الخطأ القاتل في شركة "أفق"!</h3>
+                <p class="text-gray-700 text-sm mb-3">أصدرت الشركة 100,000 سهم، القيمة الإسمية 10 ريال، وبيع بسعر 12 ريال. قام المحاسب المبتدئ بتسجيل القيد:</p>
+                <div class="bg-red-100 text-red-800 p-2 rounded text-center text-sm font-bold mb-3 line-through decoration-red-500 decoration-2">
+                    1,200,000 من حـ / النقدية <br>
+                    1,200,000 إلى حـ / رأس مال الأسهم العادية
+                </div>
+                
+                <h4 class="font-bold text-green-600 mb-1"><i class="fa-solid fa-check ml-1"></i> الحل والتصحيح:</h4>
+                <p class="text-gray-700 text-sm">لا يجوز تسجيل رأس المال بأكثر من "القيمة الإسمية". يجب فصل الزيادة (2 ريال × 100,000 = 200,000 ريال) ووضعها كالتالي:</p>
             </div>
-            
-            <h4 class="font-bold text-green-700 mb-2 flex items-center"><i class="fa-solid fa-circle-check text-green-500 ml-2"></i> الحل والتصحيح:</h4>
-            <p class="text-gray-700 text-sm mb-3">لا يجوز تسجيل رأس المال بأكثر من "القيمة الإسمية". يجب فصل الزيادة (2 ريال × 100,000 = 200,000 ريال) كالتالي:</p>
-            
-            <div class="bg-green-50 text-green-800 p-4 rounded-xl font-bold text-sm text-center border border-green-200">
+            <div class="bg-green-100 text-green-800 p-3 rounded font-bold text-sm text-center border border-green-300">
                 1,200,000 من حـ/ النقدية <br>
                 إلى مذكورين <br>
                 1,000,000 حـ/ رأس مال الأسهم العادية<br>
@@ -307,80 +292,80 @@
         </div>
     </div>
 
-    <!-- ================= الصفحة الرابعة: التسالي ================= -->
-    <div class="a4-page flex flex-col">
-        <div class="p-12 pb-6">
-            <span class="bg-white border-2 border-secondary text-secondary px-4 py-1 rounded-full text-xs font-bold inline-block shadow-sm">صفحة 4</span>
+    <!-- ================= الصفحة الرابعة: التسالي والخاتمة ================= -->
+    <div class="a4-page border-b-8 border-primary flex flex-col">
+        <div class="p-12 pb-4">
+            <span class="bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-xs font-bold mb-2 inline-block">صفحة 4</span>
         </div>
 
-        <div class="bg-secondary text-white py-8 text-center shadow-md">
-            <h2 class="text-3xl font-black flex justify-center items-center gap-3">
-                <i class="fa-solid fa-lightbulb"></i> استراحة المحاسب
-            </h2>
-            <p class="opacity-90 mt-2 text-sm">اختبر معلوماتك بطريقة ممتعة!</p>
+        <!-- ترويسة التسالي -->
+        <div class="bg-secondary text-white py-6 text-center shadow-md">
+            <h2 class="text-3xl font-black"><i class="fa-solid fa-puzzle-piece ml-2"></i>استراحة المحاسب</h2>
+            <p class="opacity-90 mt-1 text-sm">اختبر معلوماتك بطريقة ممتعة!</p>
         </div>
         
         <div class="p-12 flex flex-col gap-8 flex-grow">
             <!-- اللغز -->
-            <div class="bg-amber-50 p-8 rounded-2xl border border-amber-200 text-center relative shadow-sm">
-                <i class="fa-solid fa-circle-question text-5xl text-amber-200 absolute -top-5 -right-5"></i>
+            <div class="bg-amber-50 p-6 rounded-xl border-2 border-amber-200 text-center relative shadow-sm">
+                <i class="fa-solid fa-circle-question text-5xl text-amber-300 absolute -top-6 -right-6 drop-shadow-md"></i>
                 <h3 class="font-bold text-2xl text-secondary mb-4">لغز العدد</h3>
                 <p class="text-lg text-gray-800 font-bold mb-6 leading-relaxed">
                     "أظهر في حقوق الملكية عندما يُباع السهم بأكثر من قيمته الإسمية، ولا أُعتبر جزءاً من رأس المال.. <br><span class="text-primary font-black">فمن أنا؟</span>"
                 </p>
-                <div class="bg-white border-2 border-dashed border-gray-300 p-4 inline-block rounded-xl shadow-inner relative group cursor-help">
-                    <span class="text-transparent group-hover:text-primary transition duration-500 font-black text-lg">الاحتياطي النظامي (علاوة الإصدار)</span>
-                    <span class="absolute inset-0 flex items-center justify-center text-gray-400 group-hover:hidden text-sm font-bold"><i class="fa-solid fa-hand-pointer ml-2"></i> مرر الماوس لمعرفة الإجابة</span>
+                <div class="bg-white border-2 border-dashed border-gray-300 p-3 inline-block rounded-lg shadow-inner">
+                    <span class="text-transparent selection:text-primary hover:text-primary transition duration-500 font-black cursor-help" title="ظلل النص أو اضغط هنا لترى الإجابة">الاحتياطي النظامي (علاوة الإصدار)</span>
+                    <p class="text-xs text-gray-400 mt-1">مرر الماوس فوق المربع لتظهر الإجابة</p>
                 </div>
             </div>
 
             <!-- الكلمات المتقاطعة -->
-            <div class="bg-white border border-gray-200 p-8 rounded-2xl shadow-sm mt-2">
-                <h3 class="font-bold text-xl text-primary mb-6 border-b pb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-table-cells"></i> ابحثي عن المصطلحات التالية:
-                </h3>
-                <div class="flex flex-wrap gap-3 justify-center mb-8">
-                    <span class="bg-gray-100 text-gray-700 px-4 py-1.5 rounded-full font-bold text-sm border shadow-sm">سندات</span>
-                    <span class="bg-gray-100 text-gray-700 px-4 py-1.5 rounded-full font-bold text-sm border shadow-sm">أصول</span>
-                    <span class="bg-gray-100 text-gray-700 px-4 py-1.5 rounded-full font-bold text-sm border shadow-sm">التزامات</span>
-                    <span class="bg-gray-100 text-gray-700 px-4 py-1.5 rounded-full font-bold text-sm border shadow-sm">أسهم</span>
+            <div class="bg-white border p-6 rounded-xl shadow-sm border-gray-200 mt-4">
+                <h3 class="font-bold text-xl text-primary mb-4 border-b pb-2"><i class="fa-solid fa-table-cells ml-2"></i>ابحثي عن المصطلحات التالية:</h3>
+                <div class="flex flex-wrap gap-2 justify-center mb-6">
+                    <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-bold text-sm border">سندات</span>
+                    <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-bold text-sm border">أصول</span>
+                    <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-bold text-sm border">التزامات</span>
+                    <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-bold text-sm border">أسهم</span>
                 </div>
                 
-                <div class="grid grid-cols-6 gap-2 w-full max-w-sm mx-auto text-center text-lg font-bold text-gray-400 bg-gray-50 p-4 rounded-xl border border-gray-100">
-                    <div class="bg-white rounded p-2 shadow-sm text-primary">س</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-primary">ن</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-primary">د</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-primary">ا</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-primary">ت</div>
-                    <div class="bg-white rounded p-2 shadow-sm">أ</div>
+                <!-- شبكة الكلمات -->
+                <div class="grid grid-cols-6 gap-1 w-full max-w-sm mx-auto text-center text-lg font-bold text-gray-400 bg-gray-100 p-2 rounded-lg">
+                    <div class="bg-white rounded p-2 text-primary">س</div>
+                    <div class="bg-white rounded p-2 text-primary">ن</div>
+                    <div class="bg-white rounded p-2 text-primary">د</div>
+                    <div class="bg-white rounded p-2 text-primary">ا</div>
+                    <div class="bg-white rounded p-2 text-primary">ت</div>
+                    <div class="bg-white rounded p-2">أ</div>
                     
-                    <div class="bg-white rounded p-2 shadow-sm text-secondary">أ</div>
-                    <div class="bg-white rounded p-2 shadow-sm">ل</div>
-                    <div class="bg-white rounded p-2 shadow-sm">م</div>
-                    <div class="bg-white rounded p-2 shadow-sm">و</div>
-                    <div class="bg-white rounded p-2 shadow-sm">ر</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-green-600">ا</div>
+                    <div class="bg-white rounded p-2 text-secondary">أ</div>
+                    <div class="bg-white rounded p-2">ل</div>
+                    <div class="bg-white rounded p-2">م</div>
+                    <div class="bg-white rounded p-2">و</div>
+                    <div class="bg-white rounded p-2">ر</div>
+                    <div class="bg-white rounded p-2 text-green-600">ا</div>
                     
-                    <div class="bg-white rounded p-2 shadow-sm text-secondary">ص</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-orange-500">أ</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-orange-500">س</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-orange-500">هـ</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-orange-500">م</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-green-600">ل</div>
+                    <div class="bg-white rounded p-2 text-secondary">ص</div>
+                    <div class="bg-white rounded p-2 text-orange-500">أ</div>
+                    <div class="bg-white rounded p-2 text-orange-500">س</div>
+                    <div class="bg-white rounded p-2 text-orange-500">هـ</div>
+                    <div class="bg-white rounded p-2 text-orange-500">م</div>
+                    <div class="bg-white rounded p-2 text-green-600">ل</div>
                     
-                    <div class="bg-white rounded p-2 shadow-sm text-secondary">و</div>
-                    <div class="bg-white rounded p-2 shadow-sm">ب</div>
-                    <div class="bg-white rounded p-2 shadow-sm">ج</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-green-600">ت</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-green-600">ز</div>
-                    <div class="bg-white rounded p-2 shadow-sm text-green-600">م</div>
+                    <div class="bg-white rounded p-2 text-secondary">و</div>
+                    <div class="bg-white rounded p-2">ب</div>
+                    <div class="bg-white rounded p-2">ج</div>
+                    <div class="bg-white rounded p-2 text-green-600">ت</div>
+                    <div class="bg-white rounded p-2 text-green-600">ز</div>
+                    <div class="bg-white rounded p-2 text-green-600">م</div>
                 </div>
             </div>
         </div>
 
-        <div class="mt-auto bg-lightbg p-6 text-center border-t-4 border-primary">
-            <h3 class="font-black text-primary text-xl mb-1">تمت بحمد الله وتوفيقه</h3>
+        <!-- تذييل الصفحة الأخير -->
+        <div class="mt-auto bg-gray-50 p-6 text-center border-t border-gray-200">
+            <h3 class="font-black text-primary text-xl mb-1">تمت بحمد الله</h3>
             <p class="text-gray-500 text-sm">تم إنجاز هذا العمل كمتطلب لمقرر "محاسبة متوسطة 2"</p>
+            <p class="text-gray-400 text-xs mt-2">كل الشكر والتقدير لأستاذة المقرر على توجيهاتها ودعمها الدائم.</p>
         </div>
     </div>
 
